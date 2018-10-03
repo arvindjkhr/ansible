@@ -1,0 +1,17 @@
+--- # Install mariadb via ansible on centOS
+ - hosts: localhost
+   #user: test
+   #sudo: yes
+  # vars:
+  #  mysql_root_password: passwd
+   tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+    - name: Install the PhpMyAdmin  Support Libraries
+      yum: pkg=phpmyadmin state=latest
+    - name: Install the Python MySQL Support Libraries
+      yum: pkg=MySQL-python state=latest
+    - name: start Apache server and enable it on reboot
+      service: name=httpd state=started enabled=true
